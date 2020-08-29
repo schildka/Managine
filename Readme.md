@@ -1,14 +1,13 @@
-# SpaceShooter
+# Managine
 
 A game engine using modern c++ that shows many of the basic features, patterns, and approaches that can be used in building your own game engine.
-The example game, SpaceShooter, is a side-scrolling 2.5D arcade shooting game that puts you and your (remote) friends in combat with procedurally generated enemies.
 
 
 |  General Info  | |
 | ---|---|
-| SpaceShooter |  |
+|  |  |
 | TBD |  |
-| Student | Andreas Knote, andreas.knote@uni-wuerzburg.de |
+| Student | Manuel Schildknecht, manuel.schildknecht@stud-mail.uni-wuerzburg.de |
 |Start-Date| 14.10.2019 |
 |Study Program | Games Engineering B.Sc.|
 
