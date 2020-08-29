@@ -1,7 +1,6 @@
-# Space Shooter 
+# ResourceGame
 
 A game using modern c++ that shows many of the basic features, patterns, and approaches that can be used in building your own game engine.
-The example game, SpaceShooter, is a side-scrolling 2.5D arcade shooting game that puts you and your (remote) friends in combat with procedurally generated enemies (or maybe, it is not).
 
 ## Building this Project
 
