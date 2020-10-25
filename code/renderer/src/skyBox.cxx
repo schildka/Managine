@@ -76,9 +76,7 @@ namespace engine::renderer {
 	}
 
 	void SkyBox::renderUpdate(Camera* camera, Lights* lights, engine::context::Context* context) {
-		
-		transform.RotateBy(glm::radians(speed), glm::vec3(0, 1, 0));
-
+				
 		shader->use();
 
 		glm::mat4 view = glm::mat4(glm::mat3(camera->GetViewMatrix())); // remove translation from the view matrix

@@ -1,6 +1,3 @@
-// GameLab 3 Tutorial 2019/20
-// Andreas Knote <andreas.knote@uni-wuerzburg.de>
-
 #pragma once
 
 #include <engine/generated/defaults.h>

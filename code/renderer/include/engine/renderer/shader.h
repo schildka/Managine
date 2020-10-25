@@ -1,6 +1,3 @@
-// GameLab 3 Tutorial 2019/20
-// Andreas Knote <andreas.knote@uni-wuerzburg.de>
-
 #pragma once
 
 #include <engine/renderer/lightTypes.h>
@@ -14,7 +11,7 @@
 #include <vector>
 
 namespace engine::renderer {
-    /** An OpenGl Shader handle class following the RAII principles.*/
+    /** An OpenGl Shader handle class following the RAII principles. */
     class Shader {
     public:
         /** Creates a handle for a compiled shader. */

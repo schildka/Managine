@@ -117,6 +117,7 @@ namespace blockGame {
 	}
 
 	void World::update(engine::context::Context* context, engine::renderer::Renderer* renderer, engine::physics::Physics* physics) {
+		skyBox->GetTransform()->RotateBy(glm::radians(skyBox->speed*3), glm::vec3(0, 1, 0));
 	}
 
 }

@@ -1,13 +1,10 @@
-// GameLab 3 Tutorial 2019/20
-// Andreas Knote <andreas.knote@uni-wuerzburg.de>
-
 #pragma once
 
 #include <array>
 #include <stdexcept>
 
 namespace engine::memory {
-/***
+/**
  * Array-like fixed-size container that only allows adding elements.
  * @tparam T Type of objects stored in the array.
  * @tparam Size Maximum number of objects in the array.

@@ -12,7 +12,7 @@
 
 namespace engine::renderer {
 
-	// Defines several possible options for camera movement. Used as abstraction to stay away from window-system specific input methods
+	/** Defines several possible options for camera movement. Used as abstraction to stay away from window-system specific input methods */
 	enum Camera_Movement {
 		FORWARD,
 		BACKWARD,
@@ -35,7 +35,10 @@ namespace engine::renderer {
 	const float FARCLIP = 1000.0f;
 
 
-	// An abstract camera class that processes input and calculates the corresponding Euler Angles, Vectors and Matrices for use in OpenGL
+	/**
+	* An abstract camera class that processes input and calculates the corresponding Euler Angles, Vectors and Matrices for use in OpenGL
+	* @param cameraMode Selects camera mode e.g. third person camera mode
+	*/
 	class Camera
 	{
 	public:
@@ -67,15 +70,16 @@ namespace engine::renderer {
 		glm::mat4 GetViewMatrix();
 		glm::mat4 GetNegativeViewMatrix();
 
+		/** Changes the camera position and pitch to render reflections */
 		void toggleReflectionTransform();
 
-		// Processes input received from any keyboard-like input system. Accepts input parameter in the form of camera defined ENUM (to abstract it from windowing systems)
+		/** Processes input received from any keyboard-like input system. Accepts input parameter in the form of camera defined ENUM (to abstract it from windowing systems) */
 		void ProcessKeyboard(Camera_Movement direction, float deltaTime);
 
-		// Processes input received from a mouse input system. Expects the offset value in both the x and y direction.
+		/** Processes input received from a mouse input system. Expects the offset value in both the x and y direction. */
 		void ProcessMouseMovement(glm::vec3 parentPosition, glm::vec3 parentFront, float xoffset, float yoffset, GLboolean constrainPitch = true);
 
-		// Calculates the front vector from the Camera's (updated) Euler Angles
+		/** Calculates the front vector from the Camera's (updated) Euler Angles */
 		void updateCameraVectors();
 	};
 }

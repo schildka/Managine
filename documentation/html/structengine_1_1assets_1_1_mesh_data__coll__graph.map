@@ -1,0 +1,14 @@
+<map id="engine::assets::MeshData" name="engine::assets::MeshData">
+<area shape="rect" id="node1" title=" " alt="" coords="955,195,1129,221"/>
+<area shape="rect" id="node2" href="$structengine_1_1assets_1_1_vertices.html" title=" " alt="" coords="675,77,837,104"/>
+<area shape="rect" id="node3" title=" " alt="" coords="363,31,525,57"/>
+<area shape="rect" id="node4" title=" " alt="" coords="363,81,525,108"/>
+<area shape="rect" id="node5" title=" " alt="" coords="664,129,848,170"/>
+<area shape="rect" id="node6" href="$structengine_1_1assets_1_1_vertex_bone_data.html" title=" " alt="" coords="339,136,549,163"/>
+<area shape="rect" id="node7" href="$structengine_1_1assets_1_1_material.html" title=" " alt="" coords="675,195,837,221"/>
+<area shape="rect" id="node8" title=" " alt="" coords="683,246,829,287"/>
+<area shape="rect" id="node9" title=" " alt="" coords="673,311,839,353"/>
+<area shape="rect" id="node10" href="$structengine_1_1assets_1_1_model_texture.html" title=" " alt="" coords="347,319,541,345"/>
+<area shape="rect" id="node11" title="STL class." alt="" coords="181,319,261,345"/>
+<area shape="rect" id="node12" title="STL class." alt="" coords="5,311,132,353"/>
+</map>

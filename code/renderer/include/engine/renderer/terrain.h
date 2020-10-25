@@ -21,7 +21,10 @@
 #include <vector>
 
 namespace engine::renderer {
-
+	/**
+	* Terrain Holds all relevant terrain data and creates terrain mesh out of heihtmap data.
+	* @param heightFieldShape set by reactphysics
+	*/
 	class Terrain : public Mesh
 	{
 	public:
@@ -44,8 +47,7 @@ namespace engine::renderer {
 	protected:
 		std::vector<unsigned int> GenerateIndexBuffer(std::vector<unsigned int> indices);
 		std::vector<glm::vec3> GenerateNormals(std::vector<glm::vec3> normals, std::vector<unsigned int> indices, std::vector<glm::vec3> vertices);
-		// Generates the vertex buffer objects from the
-		// position, normal, texture, and color buffers
+		// Generates the vertex buffer objects from the position, normal, texture, and color buffers
 		void GenerateBuffers(std::vector<glm::vec3> vertices, std::vector<glm::vec3> normals, std::vector<glm::vec2> texCoords, std::vector<unsigned int> indices);
 
 		void unbind();

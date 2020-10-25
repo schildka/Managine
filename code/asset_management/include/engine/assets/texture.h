@@ -5,11 +5,25 @@
 #include <glad/glad.h>
 
 namespace engine::assets {
+
+	/**
+	* A Texture loader.
+	* @param id Textures id.
+	* @param width of textures.
+	* @param height of textures.
+	* @param hasTransparency if texture should be transparent.
+	*/
 	class Texture {
 	public:
 
 		Texture() {}
 
+		/**
+		* Initalize a cubemap or a single texture depending on users needs. Can be used for shadowmapping techniques.
+		* @param width of texture
+		* @param height of texture
+		* @param isSingleDirectionTexture if texture should be a cubemap or not.
+		*/
 		Texture(unsigned int width, unsigned int height, bool isSingleDirectionTexture) {
 
 			glGenTextures(1, &_id);
@@ -39,6 +53,10 @@ namespace engine::assets {
 			}
 		}
 
+		/**
+		* Initalize a cubemap.
+		* @param faces a vectore of different path strings to textures.
+		*/
 		Texture(std::vector<std::string> faces) {
 
 			glGenTextures(1, &_id);

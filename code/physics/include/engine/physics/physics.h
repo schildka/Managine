@@ -1,6 +1,3 @@
-// GameLab 3 Tutorial 2019/20
-// Andreas Knote <andreas.knote@uni-wuerzburg.de>
-
 #pragma once
 
 #include "maths.h"
@@ -12,6 +9,7 @@
 
 namespace engine::physics {
 
+	/** Rigidbody struct used for communication with used actor */
 	struct RigidBody {
 		rp3d::RigidBody *rigidBody = nullptr;
 		rp3d::Transform previousTransform;
@@ -20,6 +18,7 @@ namespace engine::physics {
 		float movingDistance;
 	};
 
+	/** PointCollisions can be used for own collsion detection algorithm */
 	struct PointCollision {
 		glm::vec3 worldPosition;
 		float radius;
@@ -30,6 +29,10 @@ namespace engine::physics {
 		}
 	};
 
+	/**
+	* Physics Creates and handles Rigidbodies and collisions
+	* @param rigidbodies Set of existing rigidbodies
+	*/
     class Physics {
     public:
 
@@ -41,6 +44,10 @@ namespace engine::physics {
 
 		RigidBody* createRigidBody(glm::vec3 position, bool isSleeping, bool simulateGravity, float damping, float mass, rp3d::BodyType type);
 
+		/**
+		* Deletes Rigidbody from scene by first removing it from the dynamics world and then removing it from the hashSet. 
+		* @param rigidbody struct to be removed
+		*/
 		void deleteRigidbody(RigidBody* rigidbody) {
 			dynamicsWorld->destroyRigidBody(rigidbody->rigidBody);
 			rigidbodies.erase(rigidbody);

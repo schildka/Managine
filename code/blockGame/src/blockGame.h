@@ -17,9 +17,9 @@ namespace blockGame {
 		void afterSystemStartup();
 
 	private:
-		MainUI * mainUI;
-		MainCamera* camera;
-		World* world;
-		MainCharacter* character;
+		MainUI * mainUI = nullptr;
+		MainCamera* camera = nullptr;
+		World* world = nullptr;
+		MainCharacter* character = nullptr;
 	};
 }

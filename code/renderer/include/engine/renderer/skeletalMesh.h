@@ -1,6 +1,3 @@
-// GameLab 3 Tutorial 2019/20
-// Andreas Knote <andreas.knote@uni-wuerzburg.de>
-
 #pragma once
 
 #include <engine/renderer/mesh.h>
@@ -15,7 +12,9 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 namespace engine::renderer {
-
+	/**
+	* Skeletal Mesh inherits from mesh and holds skeletal mesh model and it's animation as well as handling them.
+	*/
 	class SkeletalMesh : public Mesh{
 	public:
 		SkeletalMesh(glm::vec3 position = glm::vec3(), glm::vec3 rotation = glm::vec3(), glm::vec3 scale = glm::vec3(1.0f,1.0f,1.0f));
@@ -40,7 +39,9 @@ namespace engine::renderer {
 
 		// Animtaion Methods
 		std::vector<glm::mat4> BoneTransform(std::vector<glm::mat4> transforms, unsigned int animationIndex);
+		/** Traverse node hirarchy recurively to apply all bone transforms. */
 		void ReadNodeHeirarchy(double animationTime, float blendTime, unsigned int animationIndex, const engine::assets::Node* pNode, const glm::mat4 parentTransform);
+		/** Is called if new animation interupts playing animation. */
 		void Blend(unsigned int animationIndex, const glm::mat4 parentTransform, float blendMaxTime = 0.25, unsigned int blendMultiplier = 4);
 		const engine::assets::NodeAnimation* FindNodeAnim(const std::string nodeName, unsigned int animationIndex);
 		glm::mat4 CalculateNodeTransformation(float animationTime, float blendTime, const engine::assets::NodeAnimation* nodeAnim, std::string nodeName, unsigned int lastAnimationIndex);

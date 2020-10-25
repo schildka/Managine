@@ -211,6 +211,6 @@ namespace engine::renderer {
 			object->render(camera, lights, context);
 		}
 
-		if (ui != nullptr)ui->drawDebugUI(context->getDeltaTime()); // drawDebugUI(context->getDeltaTime());
+		if (ui != nullptr)ui->drawGameUI(context->getDeltaTime(), context->getCurrentFrameTime()); // drawDebugUI(context->getDeltaTime());
     }
 }

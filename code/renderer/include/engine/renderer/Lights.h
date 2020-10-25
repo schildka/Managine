@@ -7,7 +7,11 @@
 #include <vector>
 
 namespace engine::renderer {
-
+	/**
+	* Defines different light types and it effects on the world.
+	* @param hasDirectionalLight holds information if a directionalLight is available in the scene.
+	* @param calculateCascadeShadowMapping holds information if cascadeshadowmapping should be calculated if a directional light is available.
+	*/
 	class Lights {
 	public:
 
@@ -35,6 +39,7 @@ namespace engine::renderer {
 		Shadow* GetShadow();
 
 	public:
+
 		// Todo make uniform...
 		const unsigned int maxNumberOfPointLights = 5; // change manually if you need to.
 		const unsigned int maxNumberOfSpotLights = 5; // change manually if you need to.

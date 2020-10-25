@@ -1,6 +1,3 @@
-// GameLab 3 Tutorial 2019/20
-// Andreas Knote <andreas.knote@uni-wuerzburg.de>
-
 #pragma once
 
 #include <engine/renderer/renderable.h>
@@ -12,6 +9,9 @@
 #include <engine/assets/model.h>
 
 namespace engine::renderer {
+	/**
+	* Mesh class inheriting from Renderable including vertices, normals, texture coordinates, materials or textures.
+	*/
     class Mesh : public Renderable  {
     public:
         Mesh();
@@ -21,10 +21,6 @@ namespace engine::renderer {
 		Mesh(std::vector<glm::vec3> vertices, std::vector<glm::vec3> normals, std::vector<glm::vec2> texCoords, std::vector<unsigned int> indices);
 
 		Mesh* Clone();
-
-        //Mesh(Mesh &&) = delete;
-
-        //Mesh(const Mesh &) = delete;
 
         virtual ~Mesh();
 

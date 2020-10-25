@@ -18,11 +18,9 @@ add_library(AssetManagement ${SOURCE_LIST} ${HEADER_LIST} ${PUBLIC_HEADER_LIST} 
 
 # Require C++ 17 compiler
 target_compile_features(AssetManagement PRIVATE cxx_std_17)
-target_compile_options(AssetManagement PRIVATE
-        $<$<AND:$<PLATFORM_ID:Darwin>,$<VERSION_GREATER:$<CXX_COMPILER_VERSION>,8.0>>:-mmacosx-version-min=10.15>)
 
 # Link the executable with required libraries 
-target_link_libraries(AssetManagement PUBLIC Engine nothings_stb tinyobjloader assimp irrklang)
+target_link_libraries(AssetManagement PUBLIC Engine nothings_stb assimp irrklang)
 
 # Add header directory
 target_include_directories(AssetManagement PUBLIC include/)

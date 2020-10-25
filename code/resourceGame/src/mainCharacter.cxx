@@ -70,7 +70,7 @@ namespace resourceGame {
 		soundEngine = irrklang::createIrrKlangDevice();
 		music = engine::assets::Sound("sounds/music.wav", soundEngine);
 		craft = engine::assets::Sound("sounds/craft.wav", soundEngine);
-		buildError = engine::assets::Sound("sounds/buildError.wav", soundEngine);
+		buildError = engine::assets::Sound("sounds/craftError.wav", soundEngine);
 		findItem = engine::assets::Sound("sounds/findItem.wav", soundEngine);
 		waterStep = engine::assets::Sound("sounds/waterStep.wav", soundEngine);
 		spawn = engine::assets::Sound("sounds/spawn.wav", soundEngine);

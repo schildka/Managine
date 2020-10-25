@@ -11,24 +11,32 @@
 namespace engine::ui {
 
 	enum MenuState{
-		MainMenu, ResourceMenu, BuildMenu
+		MainMenu, ResourceMenu, BuildMenu, ScoreMenu, ResultMenu
 	};
 
+	/**
+	* In gamge graphical user interface, handling text and icons.
+	* @param menuState Current gui state.
+	*/
 	class UI {
 	public:
 		UI() {};
-		UI(GLFWwindow * window, double deltaTime);
+		UI(GLFWwindow * window, double deltaTime, MenuState state, std::string startQuest);
 		~UI();
 
 		void drawDebugUI(double deltaTime);
-		void drawGameUI(double deltaTime);
+		void drawGameUI(double deltaTime, double time);
 
 		void loadIcons(std::filesystem::path paths[11]);
 
 	public:
 		MenuState menuState = ResourceMenu;
+		double startTime = 0.0;
+		double actualTime = 0.0;
+		double bestTime = 0.0;
+		unsigned int blocks = 5;
 
-		std::string questLog = "Don't starve!";
+		std::string questLog = "";
 		bool isQuestLogActive = true;
 
 		unsigned int stone;
@@ -40,7 +48,6 @@ namespace engine::ui {
 		unsigned int neededOre;
 		unsigned int neededWood;
 		unsigned int neededCorn;
-
 
 	private:
 		engine::assets::Texture woodImage;
@@ -55,7 +62,5 @@ namespace engine::ui {
 		engine::assets::Texture mouseLeftImage;
 		engine::assets::Texture mouseImage;
 		engine::assets::Texture wasdImage;
-
-		
 	};
 }

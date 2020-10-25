@@ -1,6 +1,3 @@
-// GameLab 3 Tutorial 2019/20
-// Andreas Knote <andreas.knote@uni-wuerzburg.de>
-
 #pragma once
 
 #include "input.h"
@@ -14,13 +11,19 @@
 // Forward definition
 struct GLFWwindow;
 namespace engine::context {
+	/**
+	* GLFW context.
+	* @param window Current context window.
+	*/
     class Context : public Input {
     public:
         Context();
 
         ~Context();
 
+		/** returns indicator of given keyboard key */
         unsigned int getKey(unsigned int glfwKey) override;
+		/** returns indicator of given mouse key */
 		unsigned int getMouseKey(unsigned int glfwKey) override;
 
 		void registerScrollCallback(void (*f)(GLFWwindow*, double, double));

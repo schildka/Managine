@@ -1,6 +1,3 @@
-// GameLab 3 Tutorial 2019/20
-// Andreas Knote <andreas.knote@uni-wuerzburg.de>
-
 #pragma once
 
 #include <functional>
@@ -9,7 +6,7 @@
 
 namespace engine::callbacks {
 
-    /***
+    /**
      * An event that users can listen to by placing a callback.
      * @tparam Owner Only the owner of an event can fire the event.
      * @tparam Payload The types of payload (arguments) for callbacks.
@@ -20,7 +17,7 @@ namespace engine::callbacks {
         using  callback_container_t = typename std::list<callback_t>;
         using  handle_t = typename callback_container_t::iterator;
 
-        /***
+        /**
          * Supplied callbacks will be executed when the event is fired.
          * @param callback The event handler.
          * @return An iterator that must be used when unsubscribing from this event.
@@ -30,7 +27,7 @@ namespace engine::callbacks {
             return --callbacks.end();
         }
 
-        /***
+        /**
          * The supplied handle will be used to remove the previously installed callback.
          * @param callback_handle The handle that was returned by subscribe() when adding the callback.
          */

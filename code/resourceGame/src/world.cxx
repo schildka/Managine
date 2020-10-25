@@ -134,6 +134,7 @@ namespace resourceGame {
 		water->moveFactor += context->getDeltaTime() * water->moveSpeed;
 		water->moveFactor = fmod(water->moveFactor, 1.0f);
 
+		skyBox->GetTransform()->RotateBy(glm::radians(skyBox->speed), glm::vec3(0, 1, 0));
 		skyBox->sun->direction.x = skyBox->sun->direction.x * glm::cos(glm::radians(skyBox->speed)) + skyBox->sun->direction.z * glm::sin(glm::radians(skyBox->speed));
 		skyBox->sun->direction.z = -skyBox->sun->direction.x * glm::sin(glm::radians(skyBox->speed)) + skyBox->sun->direction.z * glm::cos(glm::radians(skyBox->speed));
 	}

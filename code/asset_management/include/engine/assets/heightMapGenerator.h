@@ -2,8 +2,6 @@
 
 #include <engine/assets/bitmap.h>
 
-#define STBI_MSC_SECURE_CRT
-#define STB_IMAGE_WRITE_IMPLEMENTATION
 #include <stb/stb_image_write.h>
 
 #include <cmath>
@@ -14,11 +12,21 @@
 #include <ctime>
 
 namespace engine::assets {
-
+	/**
+	* Heightmap generator. Creates Heigtmap file based on perlin noise algorithm.
+	*/
 	class HeightMapGenerator {
 	public:
 		std::vector<int> p;
 
+		/**
+		* Generates heightmap based on perlin noise algorithm
+		* @param relativeAssetPath Filesytsem path to save data to
+		* @param fileName Name of file
+		* @param width of map
+		* @param height of map
+		* @param seed
+		*/
 		void Generate(std::filesystem::path relativeAssetPath, std::string fileName, int width, int height, int seed) {
 			// Initialize the permutation vector with the reference values
 			p = {
@@ -127,6 +135,11 @@ namespace engine::assets {
 			return ((h & 1) == 0 ? u : -u) + ((h & 2) == 0 ? v : -v);
 		}
 
+		/**
+		* Saves heightmap to disk.
+		* @param relativeAssetPath Filesytsem path to save data to
+		* @param fileName Name of file
+		*/
 		void SaveHeightMap(std::filesystem::path relativeAssetPath, std::string fileName, const int width, const int height, const int channels,  std::vector<unsigned char> data) {	
 			auto p = resolveAssetPath(relativeAssetPath);
 

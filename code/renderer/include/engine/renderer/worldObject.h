@@ -8,6 +8,10 @@
 #include<engine/renderer/mesh.h>
 
 namespace engine::renderer {
+	/** 
+	* WorldObject combines mesh informations also mesh compositions and physic informations. 
+	* @param objects Vector of mesh objects the world object is composed of.
+	*/
 	class WorldObject {
 	public:
 		WorldObject();
@@ -15,6 +19,7 @@ namespace engine::renderer {
 		~WorldObject();
 
 		void initialize(engine::assets::Model* model, glm::vec3 pos, glm::vec3 rot, glm::vec3 scale, engine::assets::Text vertShader, engine::assets::Text fragShader);
+		/** Registers the vector of meshobjects to the renderer. */
 		void registerAllRenderables(Renderer* renderer);
 
 		void initPhysics(glm::vec3 pos, float radius, engine::physics::Physics* physics);

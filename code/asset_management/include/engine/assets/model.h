@@ -1,6 +1,3 @@
-// GameLab 3 Tutorial 2019/20
-// Andreas Knote <andreas.knote@uni-wuerzburg.de>
-
 #pragma once
 
 #include <engine/assets/texture.h>
@@ -38,12 +35,23 @@ namespace engine::assets {
 		float shininess;
 	};
 
+	/**
+	* Texture including type of texture and path
+	* @param id of texture was initialized with
+	* @param type of texture e.g. diffuse or normalmap
+	* @param path of texture drom disk
+	*/
 	struct ModelTexture {
 		unsigned int id;
 		std::string type;
 		std::string path;
 	};
 
+	/**
+	* BoneInfo holds the bones offset and it's transformation used for the transformation model
+	* @param boneOffset
+	* @param finalTransform
+	*/
 	struct BoneInfo
 	{
 		glm::mat4 boneOffset;
@@ -56,6 +64,11 @@ namespace engine::assets {
 		}
 	};
 
+	/**
+	* VertexBoneData holds the bones id's and weights a vertex can be manipulated with.
+	* @param ids of bones
+	* @param weights of bones
+	*/
 	struct VertexBoneData {
 		unsigned int ids[8];
 		float weights[8];
@@ -85,6 +98,7 @@ namespace engine::assets {
 		};
 	};
 
+	/** NodeAnimation holds all the animation transformations over time */
 	struct NodeAnimation {
 		std::vector<glm::quat> rotations;
 		std::vector<double> rotationTime;
@@ -121,6 +135,12 @@ namespace engine::assets {
 		std::vector<VertexBoneData> _bones;
 	};
 
+	/**
+	* A Model loader.
+	* @param meshData Holds all vertices, normales, texturecoordinates... of loaded model.
+	* @param bones Holds all bone informations of loaded model.
+	* @param meshData Holds all animations of loaded model.
+	*/
     class Model {
         public:
             Model(std::filesystem::path relativeAssetPath, bool gamma = false) : gammaCorrection(gamma) {
@@ -263,8 +283,13 @@ namespace engine::assets {
 				meshData.push_back(data);
 			}
 
-			// checks all material textures of a given type and loads the textures if they're not loaded yet.
-			// the required info is returned as a Texture struct.
+			/**
+			* checks all material textures of a given type and loads the textures if they're not loaded yet. 
+			* @param mat material from assimp
+			* @param type of wanted assimp material
+			* @param typeName of wanted texture
+			* @return the required ModelTexture
+			*/
 			std::vector<ModelTexture> loadMaterialTextures(aiMaterial *mat, aiTextureType type, std::string typeName)
 			{
 
@@ -323,6 +348,13 @@ namespace engine::assets {
 				return material;
 			}
 
+			/**
+			* Loads all bones of a given mesh as well as mapping all vertices of the mesh to the affecting bones.
+			* @param meshIndex index of mesh, important for composed meshes
+			* @param pMesh mesh of assimp
+			* @param Bones vertex bone mapping infomations
+			* @return the required bone mappings informations
+			*/
 			std::vector<VertexBoneData> LoadBones(unsigned int meshIndex, const aiMesh* pMesh, std::vector<VertexBoneData>& Bones)
 			{
 				for (unsigned int i = 0; i < pMesh->mNumBones; i++) {
@@ -351,6 +383,12 @@ namespace engine::assets {
 				return Bones;
 			}
 
+			/**
+			* Loads all available animations of the loaded model
+			* @param scene assimp scene
+			* @param animations vector of all animations to be stored to
+			* @return the required animations
+			*/
 			std::vector<Animation> LoadAnims(const aiScene* scene, std::vector<Animation> animations) {
 				
 				for (unsigned int i = 0; i < scene->mNumAnimations; i++)
@@ -413,6 +451,11 @@ namespace engine::assets {
 				return animations;
 			}
 
+			/**
+			* Loads all nodes of the model recursively to traverse the all model informations
+			* @param node assimp node
+			* @return the current node
+			*/
 			Node LoadNodes(aiNode *node) {
 				Node n;
 				n.name = node->mName.data;

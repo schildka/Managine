@@ -20,7 +20,9 @@ namespace engine::renderer {
 		float n;        // z near
 		float f;        // z far
 	};
-
+	/**
+	* Shadow Calculating different shadow maps for spot, point and directional lights.
+	*/
 	class Shadow {
 
 	public:

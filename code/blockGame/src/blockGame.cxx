@@ -14,12 +14,13 @@ namespace blockGame {
 	}
 
 	void BlockGame::afterSystemStartup() {
-		mainUI = new MainUI(this);
 		camera = new MainCamera(this);
 		world = new World(this);
 		character = new MainCharacter(this, camera);
+		mainUI = new MainUI(this);
 
 		character->setBlocks(world->getBlocks());
+		character->setUI(mainUI);
 	}
 
 }

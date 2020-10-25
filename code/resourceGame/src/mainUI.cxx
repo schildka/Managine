@@ -5,7 +5,7 @@
 namespace resourceGame {
 
 	MainUI::MainUI(engine::Engine* engine)  {
-		ui = new engine::ui::UI(engine->context->getWindow(), engine->context->getDeltaTime());
+		ui = new engine::ui::UI(engine->context->getWindow(), engine->context->getDeltaTime(), engine::ui::ResourceMenu, "Don't starve!");
 
 		std::filesystem::path paths[11] = { "icons/wood.png", "icons/stone.png", "icons/ore.png", "icons/corn.png", "icons/esc.png", "icons/space.png", "icons/back.png", "icons/alt.png", "icons/mouseKey.png", "icons/mouse.png", "icons/wasd.png" };
 		ui->loadIcons(paths);

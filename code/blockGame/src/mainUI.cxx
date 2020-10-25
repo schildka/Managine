@@ -5,7 +5,7 @@
 namespace blockGame {
 
 	MainUI::MainUI(engine::Engine* engine) {
-		ui = new engine::ui::UI(engine->context->getWindow(), engine->context->getDeltaTime());
+		ui = new engine::ui::UI(engine->context->getWindow(), engine->context->getDeltaTime(), engine::ui::ScoreMenu, "Turn all boxes to blue!");
 
 		std::filesystem::path paths[11] = { "icons/wood.png", "icons/stone.png", "icons/ore.png", "icons/corn.png", "icons/esc.png", "icons/space.png", "icons/back.png", "icons/alt.png", "icons/mouseKey.png", "icons/mouse.png", "icons/wasd.png" };
 		ui->loadIcons(paths);
@@ -32,7 +32,7 @@ namespace blockGame {
 		}
 
 		if (ui->menuState == engine::ui::MainMenu && oldState != engine::ui::BuildMenu && context->getKey(GLFW_KEY_SPACE) == GLFW_PRESS) {
-			ui->menuState = engine::ui::ResourceMenu;
+			ui->menuState = engine::ui::ScoreMenu;
 			restartGame = true;
 		}
 
@@ -41,6 +41,19 @@ namespace blockGame {
 			ui->menuState = oldState;
 		}
 
+		if (once) {
+			ui->startTime = context->getCurrentFrameTime();
+			once = false;
+		}
+
+	}
+
+	void MainUI::handleTime() {
+		if (getUI()->bestTime > getUI()->actualTime || getUI()->bestTime == 0.0) {
+			getUI()->bestTime = getUI()->actualTime;
+		}
+		ui->menuState = engine::ui::ResultMenu;
+		oldState = engine::ui::ResultMenu;
 	}
 
 	void MainUI::setState(engine::ui::MenuState newState) {

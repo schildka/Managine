@@ -69,7 +69,7 @@ namespace blockGame {
 	void MainCharacter::initializeSounds() {
 		soundEngine = irrklang::createIrrKlangDevice();
 		music = engine::assets::Sound("sounds/musicSpace.wav", soundEngine);
-		error = engine::assets::Sound("sounds/buildError.wav", soundEngine);
+		error = engine::assets::Sound("sounds/craftError.wav", soundEngine);
 		right = engine::assets::Sound("sounds/findItem.wav", soundEngine);
 		spawn = engine::assets::Sound("sounds/spawn.wav", soundEngine);
 		lose = engine::assets::Sound("sounds/spawnLose.wav", soundEngine);
@@ -79,11 +79,22 @@ namespace blockGame {
 	}
 
 	void MainCharacter::initializeQuests() {
-		
+		quests.clear();
+		quests.insert({ 1, Quest("Turn all boxes to blue!") });
+		quests.insert({ 2, Quest("Yay you did it :D") });
 	}
 
 	void  MainCharacter::handleQuests() {
-		
+		if (quest != 0 && !quests[quest].done) {
+			quests[quest].done = true;
+			for (auto q : quests)
+			{
+				if (!q.second.done) {
+					mainUI->getUI()->questLog = q.second.questText;
+					break;
+				}
+			}
+		}
 	}
 
 	unsigned int MainCharacter::handleMovement(engine::context::Context* context, glm::vec3 position) {
@@ -148,6 +159,7 @@ namespace blockGame {
 						b->getObject(1)->setMaterialUniforms();
 						currentBlock = b;
 						--count;
+						mainUI->getUI()->blocks = count;
 						soundEngine->play2D(error.getSound());
 					}
 					else {
@@ -155,8 +167,14 @@ namespace blockGame {
 						b->getObject(1)->getMaterial()->ambient = glm::vec3(0, 0, 10);
 						b->getObject(1)->setMaterialUniforms();
 						currentBlock = b;
-						if(++count == 51)std::cout << "Win" << std::endl;
 						soundEngine->play2D(right.getSound());
+
+						if (++count == 51) {
+							quest = 1;
+							handleQuests();
+							mainUI->handleTime();
+						}
+						mainUI->getUI()->blocks = count;
 					}
 					break;
 				}
@@ -189,7 +207,55 @@ namespace blockGame {
 
 	
 	void MainCharacter::handleUI(engine::context::Context* context, engine::renderer::Renderer* renderer, engine::physics::Physics* physics) {
+		if (mainUI->restartGame) {
+			skeletalMesh->rigidBody->rigidBody->setTransform(rp3d::Transform(rp3d::Vector3(0, 1, 0), rp3d::Quaternion::identity()));
+			skeletalMesh->GetTransform()->TranslateTo(glm::vec3(0, 1, 0));
 
+			if (count == 51) {
+				soundEngine->play2D(spawn.getSound());
+			}
+			else {
+				soundEngine->play2D(lose.getSound());
+			}
+
+			initializeQuests();
+			mainUI->getUI()->questLog = restartQuestText;
+
+			for (unsigned int i = 0; i < blocks->size(); i++)
+			{
+				engine::renderer::WorldObject* b = &blocks->at(i);
+
+				b->isActive = false;
+				b->getObject(1)->getMaterial()->ambient = glm::vec3(10, 0, 0);
+				b->getObject(1)->setMaterialUniforms();
+			}
+
+			blocks->at(5).getObject(1)->getMaterial()->ambient = glm::vec3(0.0, 0.0, 10.0);
+			blocks->at(5).getObject(1)->setMaterialUniforms();
+			blocks->at(5).isActive = true;
+			blocks->at(6).getObject(1)->getMaterial()->ambient = glm::vec3(0.0, 0.0, 10.0);
+			blocks->at(6).getObject(1)->setMaterialUniforms();
+			blocks->at(6).isActive = true;
+			blocks->at(16).getObject(1)->getMaterial()->ambient = glm::vec3(0.0, 0.0, 10.0);
+			blocks->at(16).getObject(1)->setMaterialUniforms();
+			blocks->at(16).isActive = true;
+			blocks->at(17).getObject(1)->getMaterial()->ambient = glm::vec3(0.0, 0.0, 10.0);
+			blocks->at(17).getObject(1)->setMaterialUniforms();
+			blocks->at(17).isActive = true;
+			blocks->at(34).getObject(1)->getMaterial()->ambient = glm::vec3(0.0, 0.0, 10.0);
+			blocks->at(34).getObject(1)->setMaterialUniforms();
+			blocks->at(34).isActive = true;
+
+			transformBlock(-2);
+
+			currentBlock = nullptr;
+			barrierBlock = nullptr;
+			count = 5;
+
+			mainUI->getUI()->blocks = 5;
+			mainUI->getUI()->startTime = context->getCurrentFrameTime();
+			mainUI->restartGame = false;
+		}
 	}
 
 }

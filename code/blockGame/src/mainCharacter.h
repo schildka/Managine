@@ -8,6 +8,7 @@
 #include <engine/renderer/worldObject.h>
 
 #include "mainCamera.h"
+#include "mainUI.h"
 
 namespace blockGame {
 
@@ -36,6 +37,8 @@ namespace blockGame {
 
 		void handleUI(engine::context::Context* context, engine::renderer::Renderer* renderer, engine::physics::Physics* physics);
 
+		void setUI(MainUI* ui) { mainUI = ui; };
+
 		void setBlocks(std::vector<engine::renderer::WorldObject> *b) { blocks = b; };
 
 		void transformBlock(int y);
@@ -47,12 +50,16 @@ namespace blockGame {
 		unsigned int animationIndex = 3;
 
 		MainCamera *mainCamera;
+		MainUI * mainUI;
+
+		std::map<unsigned int, Quest> quests;
+		std::string restartQuestText = "Turn all boxes to blue!";
+		unsigned int quest = 0;
 
 		std::vector<engine::renderer::WorldObject> *blocks;
 		engine::renderer::WorldObject* currentBlock = nullptr;
 		engine::renderer::WorldObject* barrierBlock = nullptr;
 		unsigned int count = 5;
-		// ToDo one Object that moves position to last block...
 
 		// Sounds to play
 		irrklang::ISoundEngine* soundEngine;

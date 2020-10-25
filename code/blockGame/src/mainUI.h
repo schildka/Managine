@@ -31,6 +31,8 @@ namespace blockGame {
 
 		void update(engine::context::Context* context, engine::renderer::Renderer* renderer, engine::physics::Physics* physics) override;
 		
+		void handleTime();
+
 		void setState(engine::ui::MenuState newState);
 
 		engine::ui::UI* getUI() { return ui; };
@@ -41,7 +43,9 @@ namespace blockGame {
 	private:
 		engine::ui::UI* ui;
 		
-		engine::ui::MenuState oldState = engine::ui::ResourceMenu;
+		engine::ui::MenuState oldState = engine::ui::ScoreMenu;
 		bool isEscReleased = true;
+
+		bool once = true;
 	};
 }

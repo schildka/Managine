@@ -2,11 +2,14 @@
 
 namespace engine::ui {
 
-	UI::UI(GLFWwindow * window, double deltaTime) {
+	UI::UI(GLFWwindow * window, double deltaTime, MenuState state, std::string startQuest) {
 		ImGui::CreateContext();
 		ImGuiIO &io = ImGui::GetIO();
 		ImGui_ImplGlfw_InitForOpenGL(window, true);
 		ImGui_ImplOpenGL3_Init("#version 330 core");
+
+		menuState = state;
+		questLog = startQuest;
 	}
 
 	UI::~UI() {
@@ -31,7 +34,7 @@ namespace engine::ui {
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 	}
 
-	void UI::drawGameUI(double deltaTime) {
+	void UI::drawGameUI(double deltaTime, double time) {
 		ImGui::GetCurrentContext();
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
@@ -116,6 +119,33 @@ namespace engine::ui {
 			ImGui::Text("Controls");
 			ImGui::Image((void*)(intptr_t)wasdImage.id(), ImVec2(50, 32));
 			ImGui::Image((void*)(intptr_t)mouseImage.id(), ImVec2(32, 32));
+			break;
+
+		case ScoreMenu:
+			actualTime = time - startTime;
+
+			ImGui::Text("Main Menu");
+			ImGui::Image((void*)(intptr_t)escImage.id(), ImVec2(32, 32));
+			
+			ImGui::Dummy(ImVec2(750.0f, 0.0f));
+
+			ImGui::Text("Blocks %0d", blocks);
+			ImGui::Text("/ %0d", 51);
+
+			ImGui::Dummy(ImVec2(500.0f, 0.0f));
+
+			ImGui::Text("Actual Time %0.3f", actualTime);
+			ImGui::Dummy(ImVec2(25.0f, 0.0f));
+			ImGui::Text("Best Time %0.3f", bestTime);
+			break;
+
+		case ResultMenu:
+			ImGui::Text("Main Menu");
+			ImGui::Image((void*)(intptr_t)escImage.id(), ImVec2(32, 32));
+			ImGui::Dummy(ImVec2(750.0f, 0.0f));
+			ImGui::Text("Your Time %0.3f", actualTime);
+			ImGui::Dummy(ImVec2(25.0f, 0.0f));
+			ImGui::Text("Best Time %0.3f", bestTime);
 			break;
 
 		default:

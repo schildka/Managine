@@ -1,6 +1,3 @@
-// GameLab 3 Tutorial 2019/20
-// Andreas Knote <andreas.knote@uni-wuerzburg.de>
-
 #pragma once
 
 
@@ -14,7 +11,13 @@
 #include <set>
 
 namespace engine::renderer {
-
+	/**
+	* Renderer renders all renderables to screen.
+	* @param sharedUniform otional shared uniform to draw.
+	* @param renderables Set of renderables to draw.
+	* @param waterRenderables Set of water objects to draw.
+	* @param ui optional graphical user interface to draw.
+	*/
     class Renderer {
 
     public:
@@ -25,7 +28,9 @@ namespace engine::renderer {
 
 
 		void registerSharedUniformsRenderable(Renderable* renderable);
+		/** Register renderable which should be drawn */
 		void registerRenderable(Renderable* renderable);
+		/** Deregister renderable which should not be drawn */
 		void deRegisterRenderable(Renderable* renderable);
 		void registerCamera(Camera* camera);
 		void registerLights(Lights* light);
@@ -45,8 +50,6 @@ namespace engine::renderer {
 		void startup();
 
     private:
-        
-		//Engine *engine
         void shutdown();
 
     private:

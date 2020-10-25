@@ -16,8 +16,6 @@ add_executable(ResourceGame ${SOURCE_LIST} ${HEADER_LIST} ${GENERATED_HEADER_LIS
 
 # Require C++ 17 compiler
 target_compile_features(ResourceGame PRIVATE cxx_std_17)
-target_compile_options(ResourceGame PRIVATE
-        $<$<AND:$<PLATFORM_ID:Darwin>,$<VERSION_GREATER:$<CXX_COMPILER_VERSION>,8.0>>:-mmacosx-version-min=10.15>)
 
 # Link the executable with required libraries 
 target_link_libraries(ResourceGame PRIVATE Engine Physics UI Renderer AssetManagement assimp nothings_stb)

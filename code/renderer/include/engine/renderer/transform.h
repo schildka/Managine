@@ -3,7 +3,10 @@
 #include <glm\glm.hpp>
 
 namespace engine::renderer {
-
+	/**
+	* Transform component holding position, rotation and scale informations in 3D.
+	* @param matrix Holds model matrix including translation, rotation and scaling.
+	*/
 	class Transform {
 	private:
 		glm::vec3 position, rotation, scale;

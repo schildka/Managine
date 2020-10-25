@@ -1,4 +1,4 @@
-#version 330 core
+#version 420 core
 layout (location = 0) in vec3 position;
 layout (location = 5) in ivec4 boneIDs;
 layout (location = 6) in ivec4 boneSecondIDs;

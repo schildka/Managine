@@ -1,6 +1,3 @@
-// GameLab 3 Tutorial 2019/20
-// Andreas Knote <andreas.knote@uni-wuerzburg.de>
-
 #pragma once
 
 #include <glad/glad.h>
@@ -12,6 +9,13 @@
 
 
 namespace engine {
+	/**
+	* Engine.
+	* @param context.
+	* @param renderer.
+	* @param physics.
+	* @param actors Set of actors handled by engine.
+	*/
 	class Engine {
 
 	public:

@@ -1,6 +1,3 @@
-// GameLab 3 Tutorial 2019/20
-// Andreas Knote <andreas.knote@uni-wuerzburg.de>
-
 #pragma once
 
 #include <engine/assets/assets.h>
@@ -11,7 +8,11 @@
 #include <string>
 
 namespace engine::assets {
-
+	/**
+	* A Text loader.
+	* @param data Data of file.
+	* @param fileSize Size of file.
+	*/
     class Text {
     public:
         Text(std::filesystem::path assetPath) {

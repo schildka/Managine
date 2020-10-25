@@ -16,9 +16,9 @@ namespace engine::context {
         if (!glfwInit())
             throw std::runtime_error("Failed to initialize GLFW!");
 
-        // Make sure we get an OpenGL 4.1 context
+        // Make sure we get an OpenGL 4.6 context
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
@@ -33,7 +33,7 @@ namespace engine::context {
         glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
 
         // Create a windowed mode window and its OpenGL context
-        window = glfwCreateWindow(width, height, "Window", NULL, NULL);	// For FullScreen use -> glfwGetPrimaryMonitor()
+        window = glfwCreateWindow(width, height, "Window", glfwGetPrimaryMonitor(), NULL);	// For FullScreen use -> glfwGetPrimaryMonitor()
         if (!window) {
             glfwTerminate();
             throw std::runtime_error("Failed to initialize GLFW!");

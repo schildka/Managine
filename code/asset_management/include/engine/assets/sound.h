@@ -5,7 +5,10 @@
 #include <irrKlang.h>
 
 namespace engine::assets {
-
+	/**
+	* A Sound loader.
+	* @param sound Holds sound file.
+	*/
 	class Sound {
 	
 	public:

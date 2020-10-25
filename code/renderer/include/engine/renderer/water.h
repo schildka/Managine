@@ -9,7 +9,9 @@
 
 
 namespace engine::renderer {
-
+	/**
+	* Water which generates mesh and render water reflection and refractions.
+	*/
 	class Water : public Mesh {
 
 	public:
@@ -48,7 +50,6 @@ namespace engine::renderer {
 
 		engine::assets::Texture dudv;
 		engine::assets::Texture normal;
-
 
 		static const int reflectionWidth, reflectionHeight;
 		static const int refractionWidth, refractionHeight;

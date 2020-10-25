@@ -159,7 +159,7 @@ namespace engine::renderer {
 
 	void Shadow::renderDirectional(glm::mat4 cameraView, glm::mat4 lightView, unsigned int i) {
 		
-		glm::mat4 lightProjection = glm::transpose(glm::ortho(shadowOrthoProjections[i].l, shadowOrthoProjections[i].r, shadowOrthoProjections[i].b, shadowOrthoProjections[i].t, shadowOrthoProjections[i].n, shadowOrthoProjections[i].f));
+		//glm::mat4 lightProjection = glm::transpose(glm::ortho(shadowOrthoProjections[i].l, shadowOrthoProjections[i].r, shadowOrthoProjections[i].b, shadowOrthoProjections[i].t, shadowOrthoProjections[i].n, shadowOrthoProjections[i].f));
 		glm::mat4 lightProjection2;
 
 		float l = shadowOrthoProjections[i].l;
@@ -175,12 +175,10 @@ namespace engine::renderer {
 		lightProjection2[3][0] = 0.0f;         lightProjection2[3][1] = 0.0f;         lightProjection2[3][2] = 0.0f;         lightProjection2[3][3] = 1.0;
 
 
-
 		//std::cout << shadowOrthoProjections[i].l << "   " << shadowOrthoProjections[i].r << "   " << shadowOrthoProjections[i].b << "   " << shadowOrthoProjections[i].t << "   " << shadowOrthoProjections[i].n << "   " << shadowOrthoProjections[i].f << std::endl;
 
 
-
-		lightSpaceMatrix[i] = glm::transpose(lightView * lightProjection2);	// ToDo was ist hier los!
+		lightSpaceMatrix[i] = glm::transpose(lightView * lightProjection2);	// ToDo was ist hier los?
 
 		directionalDepthMapShader->setMat4("lightSpaceMatrix", lightSpaceMatrix[i]);
 	}

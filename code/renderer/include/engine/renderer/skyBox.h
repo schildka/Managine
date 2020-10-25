@@ -11,6 +11,11 @@
 #include<vector>
 
 namespace engine::renderer {
+	/**
+	* SkyBox cubeMap sourrunds scene
+	* @param texture CubeMap texture.
+	* @param sun DirectionalLight can be set to rotate with cubeMap.
+	*/
 	class SkyBox : public Mesh {
 	public:
 		SkyBox() {};
@@ -33,6 +38,6 @@ namespace engine::renderer {
 		bool isValid = false;
 		unsigned size = 2000.0f;
 
-		DirectionalLight *sun;
+		DirectionalLight *sun = nullptr;
 	};
 }
