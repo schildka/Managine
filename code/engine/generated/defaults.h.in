@@ -1,0 +1,13 @@
+// GameLab 3 Tutorial 2019/20
+// Andreas Knote <andreas.knote@uni-wuerzburg.de>
+
+#pragma once
+
+#include <cstddef>
+
+#cmakedefine ENGINE_DEV_ROOT_PATH "@ENGINE_DEV_ROOT_PATH@"
+
+namespace engine {
+	 inline const size_t max_num_systems = @ENGINE_MAX_NUM_SYSTEMS@;
+	 inline const size_t max_num_components = @ENGINE_MAX_NUM_COMPONENTS@;
+}

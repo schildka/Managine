@@ -1,0 +1,12 @@
+[submodule "code/extern/glfw"]
+	path = code/extern/glfw
+	url = https://github.com/glfw/glfw.git
+[submodule "code/extern/glm"]
+	path = code/extern/glm
+	url = https://github.com/g-truc/glm.git
+[submodule "code/extern/reactphysics3d"]
+	path = code/extern/reactphysics3d
+	url = https://github.com/DanielChappuis/reactphysics3d.git
+[submodule "code/extern/assimp"]
+	path = code/extern/assimp
+	url = https://github.com/assimp/assimp.git
